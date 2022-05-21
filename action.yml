@@ -1,12 +1,13 @@
-name: 'Container Action Template'
-description: 'Get started with Container actions'
-author: 'GitHub'
-inputs: 
-  myInput:
-    description: 'Input to use'
-    default: 'world'
+name: 'Hello World'
+description: 'Greet someone'
+author: "Jiaying Lu"
+inputs:
+  myInput:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'World'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.myInput }}
+  using: "composite"
+  steps:
+    - run: python ${{ github.action_path }}/main.py --arg1 ${{ inputs.myInput }}
+      shell: bash
