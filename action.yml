@@ -1,4 +1,4 @@
-name: 'FTP deploy'
+name: 'FTP Deploy Action (Python3) '
 description: 'Automate deploying websites and more with this GitHub action via FTP'
 author: "Jiaying Lu"
 inputs:
@@ -34,3 +34,6 @@ runs:
   steps:
     - run: python ${{ github.action_path }}/main.py --host ${{ inputs.host }} --port ${{ inputs.port }} --user ${{ inputs.user }} --passwd ${{ inputs.passwd }} --local_dir ${{ inputs.local_dir }} --remote_dir ${{ inputs.remote_dir }} --dry_run ${{ inputs.dry_run }} --exclude ${{ inputs.exclude }}
       shell: bash
+branding:
+  icon: "upload-cloud"
+  color: "purple"

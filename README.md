@@ -29,7 +29,7 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install pyftpsync==4.0.0a3
     - name: FTP Deploy
-      uses: lujiaying/FTP-Deploy-Action-Py3.9@main
+      uses: lujiaying/FTP-Deploy-Action-Py3.9@v1.0
       with:
         host: ${{ secrets.ftp_host }}
         user: ${{ secrets.ftp_username }}
@@ -37,5 +37,6 @@ jobs:
         port: 21
         local_dir: ./
         remote_dir: /
-        dry_run: True
+        exclude: .git,.github,.DS_Store,README*,LICENSE
+        dry_run: False
 ```
