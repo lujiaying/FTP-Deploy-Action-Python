@@ -1,13 +1,36 @@
-name: 'Hello World'
-description: 'Greet someone'
+name: 'FTP deploy'
+description: 'Automate deploying websites and more with this GitHub action via FTP'
 author: "Jiaying Lu"
 inputs:
-  myInput:  # id of input
-    description: 'Who to greet'
+  host:
+    description: 'ftp server url'
     required: true
-    default: 'World'
+  port:
+    description: 'ftp server port'
+    required: false
+    default: 21
+  user:
+    description: 'ftp server username'
+    required: true
+  passwd:
+    description: 'ftp server password'
+    required: true
+  local_dir:
+    description: 'Folder to upload from, must end with trailing slash /'
+    required: true
+  remote_dir:
+    description: 'Path to upload to on the server. Must end with trailing slash /'
+    required: true
+  dry_run:
+    description: 'Prints which modifications will be made with current config options, but doesnt actually make any changes'
+    required: false
+    default: 'False'
+  exclude:
+    description: ' wildcard of files and directories to exclude'
+    required: false
+    default: '.DS_Store,.git,.github,LICENSE,README.md'
 runs:
   using: "composite"
   steps:
-    - run: python ${{ github.action_path }}/main.py --arg1 ${{ inputs.myInput }}
+    - run: python ${{ github.action_path }}/main.py --host ${{ inputs.host }} --port ${{ inputs.port }} --user ${{ inputs.user }} --passwd ${{ inputs.passwd }} --local_dir ${{ inputs.local_dir }} --remote_dir ${{ inputs.remote_dir }} --dry_run ${{ inputs.dry_run }} --exclude ${{ inputs.exclude }}
       shell: bash
