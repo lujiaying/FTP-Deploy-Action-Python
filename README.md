@@ -5,7 +5,7 @@ This package is a [Composite Action](https://docs.github.com/en/actions/creating
 
 # Usage Example
 
-Place the following scripts in `./.github/workflows/main,yml`
+Place the following scripts in `./.github/workflows/main.yml`
 
 ```yml
 on: 
